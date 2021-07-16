@@ -58,10 +58,14 @@ package:
 functions:
   hello:
     handler: CsharpHandlers::AwsDotnetCsharp.Handler::Hello
-
+    events:
+      - http: 
+          path: hello
+          method: GET
     # you can add packaging information here
     package:
       artifact: bin/Release/netcoreapp3.1/hello.zip
+
     #  exclude:
     #    - exclude-me.js
     #    - exclude-me-dir/**
@@ -116,3 +120,4 @@ functions:
 #     NewOutput:
 #       Description: "Description for the output"
 #       Value: "Some output value"
+

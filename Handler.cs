@@ -5,10 +5,20 @@ namespace AwsDotnetCsharp
 {
     public class Handler
     {
-       public Response Hello(Request request)
-       {
-           return new Response("Go Serverless v1.0! Your function executed successfully!", request);
-       }
+       public APIGatewayProxyResponse Hello(APIGatewayProxyRequest request, ILambdaContext context)
+      {
+            // Log entries show up in CloudWatch
+            context.Logger.LogLine("Example log entry\n");
+
+            var response = new APIGatewayProxyResponse
+            {
+              StatusCode = (int)HttpStatusCode.OK,
+              Body = "{ \"Message\": \"Hello World\" }",
+              Headers = new Dictionary<string, string> {{ "Content-Type", "application/json" }}
+      };
+
+    return response;
+}
     }
 
     public class Response
