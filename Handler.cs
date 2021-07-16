@@ -1,4 +1,7 @@
 using Amazon.Lambda.Core;
+using Amazon.Lambda.APIGatewayEvents;
+using System.Collections.Generic;
+using System.Net;
 
 [assembly:LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 namespace AwsDotnetCsharp
@@ -6,7 +9,7 @@ namespace AwsDotnetCsharp
     public class Handler
     {
        public APIGatewayProxyResponse Hello(APIGatewayProxyRequest request, ILambdaContext context)
-      {
+       {
             // Log entries show up in CloudWatch
             context.Logger.LogLine("Example log entry\n");
 
@@ -15,10 +18,9 @@ namespace AwsDotnetCsharp
               StatusCode = (int)HttpStatusCode.OK,
               Body = "{ \"Message\": \"Hello World\" }",
               Headers = new Dictionary<string, string> {{ "Content-Type", "application/json" }}
-      };
-
-    return response;
-}
+            };
+            return response;
+        }
     }
 
     public class Response
